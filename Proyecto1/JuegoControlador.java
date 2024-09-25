@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 /**
  * Write a description of class JuegoControlador here.
  * 
@@ -7,27 +7,34 @@
  */
 public class JuegoControlador
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class JuegoControlador
-     */
-    public JuegoControlador()
-    {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public static void main(String [] args){
+        Scanner input = new Scanner(System.in);
+        TicTacToe nuevoJuego = new TicTacToe();
+        System.out.println("El tablero inicial es: ");
+        nuevoJuego.MostrarTablero();
+        
+        boolean continuar = true;
+        while (continuar){
+            
+            System.out.println("Fila:");
+            int fila = input.nextInt();
+            
+            System.out.println("Columna");
+            int columna = input.nextInt();
+            
+            nuevoJuego.HacerMovimiento(fila,columna);
+            nuevoJuego.CambiarJugador();
+            
+            String[] resultados = nuevoJuego.Ganador();
+            System.out.println("Hay ganador: " + resultados[0] + ".El ganador es: " + resultados[1]);
+            
+            nuevoJuego.MostrarTablero();
+            
+            System.out.println("Desea salir (1:Si, 2:No)");
+            int eleccion = input.nextInt();
+            if (eleccion == 1){
+                continuar = false;
+            }
+        }
     }
 }
