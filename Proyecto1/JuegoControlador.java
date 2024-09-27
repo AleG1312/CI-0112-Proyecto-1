@@ -24,11 +24,11 @@ public class JuegoControlador
             
             nuevoJuego.HacerMovimiento(fila,columna);
             nuevoJuego.CambiarJugador();
-            
             String[] resultados = nuevoJuego.Ganador();
             System.out.println("Hay ganador: " + resultados[0] + ".El ganador es: " + resultados[1]);
             
             nuevoJuego.MostrarTablero();
+            
             
             System.out.println("Desea salir (1:Si, 2:No)");
             int eleccion = input.nextInt();
