@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=CuatroEnLinea
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ CuatroEnLinea\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=CuatroEnLinea()
+comment1.text=\r\n\ M\u00E9todo\ Constructor\r\n
+comment2.params=columna
+comment2.target=void\ HacerMovimiento(int)
+comment3.params=
+comment3.target=void\ MostrarTablero()
+comment4.params=
+comment4.target=void\ CambiarJugador()
+numComments=5
