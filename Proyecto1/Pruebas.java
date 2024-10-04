@@ -1,4 +1,8 @@
+//Ingreso la librería para poder solicitarle datos al usuario
 import java.util.Scanner;
+
+//Ingreso la librería para poder limpiar la pantalla en plena ejecución
+import java.io.IOException;
 /**
  * Write a description of class Pruebas here.
  * 
@@ -7,26 +11,31 @@ import java.util.Scanner;
  */
 public class Pruebas
 {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException, InterruptedException{
         
         Scanner input = new Scanner(System.in);
         CuatroEnLinea nuevoJuego = new CuatroEnLinea();
         
-        boolean continuar = true;
-        while (continuar){
+        String[][] tablero = nuevoJuego.getTablero();
+        
+        while (true){
             nuevoJuego.MostrarTablero();
             
             System.out.println("Ingrese la columna para hacer su movimiento");
             int columna = input.nextInt();
-            
+                    
             nuevoJuego.HacerMovimiento(columna);
+            String ganador = nuevoJuego.EsGanador();
+            nuevoJuego.CambiarJugador();   
             
-            nuevoJuego.CambiarJugador();
-            
-            System.out.println("Desea salir (1:Si, 2:No)");
-            int eleccion = input.nextInt();
-            if (eleccion == 1){
-                continuar = false;
+            if (ganador != null){
+                nuevoJuego.MostrarTablero();
+                System.out.println("El ganador es: " + ganador);
+                break;
+            }   
+            else{
+                //Limpio la pantalla
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor(); 
             }
         }
     }
