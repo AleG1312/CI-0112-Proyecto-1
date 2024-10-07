@@ -25,15 +25,16 @@ public class TicTacToe
         this.tablero = new String[3][3];
     }
     
-    public void HacerMovimiento(int fila, int columna){
-        if (this.tablero[fila][columna] != null){
-            System.out.println("La casilla ya esta ocupada, por favor elija otra.");
-        }
-        else{
+    public boolean HacerMovimiento(int fila, int columna) {
+        if (this.tablero[fila][columna] != null) {
+            System.out.println("La casilla ya está ocupada, por favor elija otra.");
+            return false; // Retorna false si la casilla ya está ocupada
+        } else {
             this.tablero[fila][columna] = this.jugadorActual;
-        }            
-    } 
-    
+            return true; // Retorna true si el movimiento es válido
+        }
+    }
+
     public void MostrarTablero(){
         String fila = "";
         for(int i = 0; i < this.tablero.length; i++){
@@ -148,7 +149,34 @@ public class TicTacToe
             this.jugadorActual="X";
         }
     }
+    
+    public boolean Empate() {
+        // Recorre el tablero
+        for (int i = 0; i < this.tablero.length; i++) {
+            for (int j = 0; j < this.tablero[i].length; j++) {
+                // Si encuentra una celda vacía, aún no hay empate
+                if (this.tablero[i][j] == null) {
+                    return false;
+                }
+            }
+        }
+        // Si no hay celdas vacías, hay empate
+        return true;
+    }
+    
+    public boolean JuegoTerminado() {
+        String[] resultadoGanador2 = Ganador();
+        if (resultadoGanador2[0].equals("True")) {
+            return true;
+        } else if (Empate()) {
+            return true;
+        } 
+        return false;
+    }
+
 }
+
+
 
      
         
