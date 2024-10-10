@@ -62,15 +62,15 @@ public class Pruebas{
             }
         }
     }
-    public static void main(){
-        mostrarMenu();
-        int juego = seleccionarJuego();
-        if (juego == 2){
-            System.out.println("Saliendo de la simulación");
-        }
-        else{
-            jugar(juego);
-            main();
-        }
+    public static void main(String[] args){
+        int juego;
+        do{
+            mostrarMenu();
+            juego = seleccionarJuego();
+            if (juego != 2){
+                jugar(juego);
+            }
+        }while(juego != 2);
+        System.out.println("Saliendo de la simulación");
     }
 }
