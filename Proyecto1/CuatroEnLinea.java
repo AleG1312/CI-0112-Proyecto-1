@@ -11,7 +11,6 @@ public class CuatroEnLinea
     private String[][] tablero;
     private String jugadorActual;
     
-
     /**
      * Método Constructor
      */
@@ -19,26 +18,26 @@ public class CuatroEnLinea
         this.tablero = new String[6][7];
         this.jugadorActual = "1"; 
     }
-    
     public String[][] getTablero(){
         return this.tablero;
     }
-
-    public void HacerMovimiento(int columna){
+    public boolean movimientoValido(int columna){
+        boolean movimientoValido = true;
+        if(this.tablero[0][columna] != null){
+            cambiarJugador();
+            movimientoValido = false;
+        }
+        return movimientoValido;
+    }
+    public void hacerMovimiento(int columna){
         for (int fila = this.tablero.length-1; fila >= 0; fila --){
-            if(this.tablero[0][columna] != null){
-                System.out.println("No se pudo hacer el movimiento correctamente");
-                CambiarJugador();
-                break;
-            }
             if (this.tablero[fila][columna] == null){
                 this.tablero[fila][columna] = this.jugadorActual;
                 break;
             }            
         }
     }
-    
-    public void MostrarTablero(){
+    public void mostrarTablero(){
         String primeraFila;
         for (String[] fila : tablero){
             primeraFila = "|";
@@ -54,11 +53,8 @@ public class CuatroEnLinea
             System.out.println(primeraFila); 
         }
     }
-    
-    
-    public String GanadorFila(){
+    public String ganadorFila(){
         String ganador = null;
-        
         //Revisión de filas:
         for (int i = 5; i >= 0; i--){
             //Voy a revisar desde el elemento inicial de la fila, hasta el elemento máximo de revisión de la misma fila
@@ -87,11 +83,8 @@ public class CuatroEnLinea
         }
         return ganador;        
     }
-    
-    
-    public String GanadorColumna(){
+    public String ganadorColumna(){
         String ganador = null;
-        
         //Revisión de columnas:
         for (int j = 0; j <= 6; j++){
             //Voy a revisar desde el último elemento de la fila, hasta la tercera posición desde el suelo
@@ -110,7 +103,6 @@ public class CuatroEnLinea
                             break;
                         }  
                     }
-                
                     //Si encontró un ganador en la columna, devuelvo el valor, sino paso al siguiente valor de comparación de la misma columna
                     if (ganador != null){
                         return ganador;
@@ -120,46 +112,63 @@ public class CuatroEnLinea
         }
         return ganador;
     }
-    
-   
-    /*
-    public String GanadorDiagonales(){
-        String ganador = null;
-        return ganador;
-    }
-    */
-    
-   public String EsGanador(){
+    public String esGanador(){
         String ganador = null;
         //Reviso si hay ganador en las filas
-        ganador = GanadorFila();
+        ganador = ganadorFila();
         if (ganador != null){
            return ganador;
         }
-        
         else{
             //Reviso si hay ganador en las columnas
-            ganador = GanadorColumna();
+            ganador = ganadorColumna();
             if (ganador != null){
                return ganador;
             }
-            /*
-            else{
-                //Reviso si hay ganador en las diagonales
-                ganador = GanadorDiagonales();
-                if(ganador != null){
-                    return ganador;
+        }
+        //En el caso de que no haya ganador en filas/columnas/diagonales, retorna el valor de ganador = null
+        return ganador;
+    }
+    public boolean esEmpate(String ganador){
+        boolean empate = false;
+        if(ganador == null && esTableroLleno() == true){
+            empate = true;
+        }
+        return empate;
+    }
+    public boolean esTableroLleno(){
+        boolean tableroLleno = true;
+        for(String[] fila : tablero){
+            for (String elemento: fila){
+                if(elemento == null){
+                    tableroLleno = false;
+                    return tableroLleno;
                 }
             }
-            */
         }
-        
-
-       //En el caso de que no haya ganador en filas/columnas/diagonales, retorna el valor de ganador = null
-       return ganador;
-   }
-    
-    public void CambiarJugador(){
+        return tableroLleno;
+    }
+    public boolean esJuegoTerminado(String ganador, boolean esEmpate){
+        boolean juegoTerminado = false;
+        if(ganador != null){
+                juegoTerminado = true;
+        }
+        else{
+            if(ganador == null && esEmpate == true){
+                juegoTerminado = true;
+            }
+        }
+        return juegoTerminado;
+    }
+    public void resultadosFinDelJuego(String ganador, boolean esEmpate){
+        if(ganador != null){
+            System.out.println("El ganador es: " + ganador);
+        }
+        else{
+            System.out.println("El juego ha terminado en empate");
+        }
+    }
+    public void cambiarJugador(){
         if(this.jugadorActual == "1"){
             this.jugadorActual = "2";
         }
@@ -167,5 +176,4 @@ public class CuatroEnLinea
             this.jugadorActual = "1";
         }
     }
-    
 }

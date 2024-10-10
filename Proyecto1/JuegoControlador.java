@@ -6,7 +6,9 @@ import java.util.Scanner;
  * @version (a version number or a date)
  */
 public class JuegoControlador
-{
+{   private TicTacToe nuevoTicTacToe;
+    private CuatroEnLinea nuevoCuatroEnLinea;
+    
     public static void main(String [] args){
         Scanner input = new Scanner(System.in);
         TicTacToe nuevoJuego = new TicTacToe();
