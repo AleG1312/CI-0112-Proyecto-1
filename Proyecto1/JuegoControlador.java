@@ -5,7 +5,47 @@ import java.util.Scanner;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class JuegoControlador
+import java.util.Scanner;
+
+public class JuegoControlador {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        TicTacToe nuevoJuego = new TicTacToe();
+        System.out.println("El tablero inicial es: ");
+        nuevoJuego.MostrarTablero();
+
+        boolean continuar = true;
+        while (continuar) {
+            System.out.println("Turno del jugador: " + nuevoJuego.getJugadorActual());
+            System.out.println("Fila:");
+            int fila = input.nextInt();
+            System.out.println("Columna:");
+            int columna = input.nextInt();
+
+            boolean movimientoValido = nuevoJuego.HacerMovimiento(fila, columna);
+            if (movimientoValido) {
+            nuevoJuego.CambiarJugador();
+            boolean resultadoGanador2Aux = nuevoJuego.JuegoTerminado();
+            String[] resultadoGanador = nuevoJuego.Ganador();
+            if (!resultadoGanador2Aux) {
+                    System.out.println("Aún no hay resultados.");
+            } else if (resultadoGanador[0].equals("True")) {
+                System.out.println("El juego ha terminado, el ganador es: " + resultadoGanador[1]);
+                continuar = false;
+            } else if (nuevoJuego.Empate()) {
+                System.out.println("El juego ha terminado, es un empate.");
+                continuar = false;
+            }
+            } else {
+                System.out.println("La casilla ya está ocupada, por favor elija otra.");
+            }
+                nuevoJuego.MostrarTablero();
+            }
+        }
+    }
+
+
+/*public class JuegoControlador
 {   private TicTacToe nuevoTicTacToe;
     private CuatroEnLinea nuevoCuatroEnLinea;
     
@@ -49,17 +89,10 @@ public class JuegoControlador
                 System.out.println("La casilla ya está ocupada, por favor elija otra.");
                 // No cambiamos de jugador porque el movimiento no fue válido
             }
-            
             // Mostramos el tablero actual después de cada turno
             nuevoJuego.MostrarTablero();
             
-            // Preguntamos al jugador si desea continuar
-            System.out.println("¿Desea salir? (1: Sí, 2: No)");
-            int eleccion = input.nextInt();
-            if (eleccion == 1) {
-                continuar = false;  // Finalizamos el juego si elige salir
-            }
         }
     }
-}
+}*/
 

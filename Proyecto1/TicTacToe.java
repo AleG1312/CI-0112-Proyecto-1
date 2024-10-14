@@ -10,6 +10,8 @@ public class TicTacToe
     
     //Los jugadores seran representados por un 1 y un 0
     private String jugadorActual;
+    int victoriasX = 0;
+    int victoriasO = 0;
     
     /**
      * Metodo: 
@@ -36,7 +38,7 @@ public class TicTacToe
     }
 
     public void MostrarTablero(){
-        String fila = "";
+        String fila = " ";
         for(int i = 0; i < this.tablero.length; i++){
             for(int j = 0; j < this.tablero.length; j++){
                 if(tablero[i][j] == null){
@@ -45,11 +47,12 @@ public class TicTacToe
                 else{
                     fila += tablero[i][j];
                 }
-                fila += "|";
+                fila += " | ";
             }
             System.out.println(fila);
-            System.out.println("----------------");
-            fila = "";
+            
+            System.out.println("        ");
+            fila = " ";
         }
     } 
     
@@ -173,7 +176,27 @@ public class TicTacToe
         } 
         return false;
     }
-
+    //setter 
+    public void setVictoriasX(int victoriasX) {
+        this.victoriasX = victoriasX;
+    }
+    public void setVictoriasO(int victoriasO) {
+        this.victoriasO = victoriasO;
+    }
+    public void setJugadorActual(String jugadorActual){
+        this.jugadorActual = jugadorActual;
+    }
+    // getters para las victorias
+    public int getVictoriasX() {
+        return victoriasX;
+    }
+     public int getVictoriasO() {
+        return victoriasO;
+    }
+    public String getJugadorActual() {
+        return jugadorActual;
+    }
+    
 }
 
 
