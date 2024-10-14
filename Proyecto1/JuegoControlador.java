@@ -1,16 +1,38 @@
+//Ingreso la librería para poder solicitarle datos al usuario
 import java.util.Scanner;
+//Ingreso la librería para poder limpiar la pantalla en plena ejecución
+import java.io.IOException;
 /**
- * Write a description of class JuegoControlador here.
+ * JuegoControlador
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Luis Guido, Alejandro Guerra
+ * @version 17-10-2024
  */
-import java.util.Scanner;
-
-public class JuegoControlador {
-    public static void main(String[] args) {
+public class JuegoControlador{   
+    private static void mostrarMenu(){
+        System.out.println("Seleccione el juego que desea jugar: ");
+        System.out.println("1. CuatroEnLinea");
+        System.out.println("2. TicTacToe");
+        System.out.println("3. Salir");
+    }
+    private static int seleccionarJuego(){
+        Scanner input = new Scanner(System.in);
+        int juego;
+        juego = input.nextInt();
+        return juego;
+    }
+    private static void jugar(int juego){
+        if (juego == 1){
+            jugarCuatroEnLinea();
+        }
+        else{   //En caso de que juego == 2
+            jugarTicTacToe();
+        }
+    }
+    private static void jugarTicTacToe(){
         Scanner input = new Scanner(System.in);
         TicTacToe nuevoJuego = new TicTacToe();
+        
         System.out.println("El tablero inicial es: ");
         nuevoJuego.MostrarTablero();
 
@@ -41,8 +63,59 @@ public class JuegoControlador {
             }
                 nuevoJuego.MostrarTablero();
             }
-        }
     }
+    private static void jugarCuatroEnLinea(){
+            Scanner input = new Scanner(System.in);
+            CuatroEnLinea nuevoJuego = new CuatroEnLinea();
+
+            boolean juegoTerminado = false;
+            while(juegoTerminado == false){
+                nuevoJuego.mostrarTablero();
+                
+                System.out.println("Ingrese una columna para hacer su movimiento");
+                int columna = input.nextInt(); 
+                
+                //Me verifica que la columna no esté llena
+                boolean columnaLlena = nuevoJuego.columnaLlena(columna);
+                if (columnaLlena == true){
+                    do{
+                        nuevoJuego.mostrarTablero();
+                        System.out.println("La columna: " + columna + " está llena. Ingrese una diferente para hacer su movimiento");
+                        columna = input.nextInt(); 
+                        columnaLlena = nuevoJuego.columnaLlena(columna);
+                    }while(columnaLlena == true);
+                }
+                nuevoJuego.hacerMovimiento(columna);
+                
+                //Compruebo si hay un ganador
+                String ganador = nuevoJuego.esGanador();
+                //Compruebo si hay un empate
+                boolean empate = nuevoJuego.esEmpate(ganador);
+                //Compruebo el fin del juego
+                juegoTerminado = nuevoJuego.esJuegoTerminado(ganador, empate);
+                //En caso de que el juego continúe
+                if(juegoTerminado == false){
+                    nuevoJuego.cambiarJugador(); 
+                }
+                //Protocolo de fin del juego
+                else{
+                    nuevoJuego.mostrarTablero();
+                    nuevoJuego.resultadosFinales(ganador, empate);
+                }
+            }
+    }
+    public static void main(String[] args){
+        int juego;
+        do{
+            mostrarMenu();
+            juego = seleccionarJuego();
+            if (juego != 3){
+                jugar(juego);
+            }
+        }while(juego != 3);
+        System.out.println("Saliendo de la simulación");
+    }
+}
 
 
 /*public class JuegoControlador

@@ -1,5 +1,16 @@
 #BlueJ class context
 comment0.target=JuegoControlador
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-numComments=2
+comment0.text=\r\n\ JuegoControlador\r\n\ \r\n\ @author\ Luis\ Guido,\ Alejandro\ Guerra\r\n\ @version\ 17-10-2024\r\n
+comment1.params=
+comment1.target=void\ mostrarMenu()
+comment2.params=
+comment2.target=int\ seleccionarJuego()
+comment3.params=juego
+comment3.target=void\ jugar(int)
+comment4.params=
+comment4.target=void\ jugarTicTacToe()
+comment5.params=
+comment5.target=void\ jugarCuatroEnLinea()
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+numComments=7
