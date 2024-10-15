@@ -34,7 +34,7 @@ public class JuegoControlador{
         TicTacToe nuevoJuego = new TicTacToe();
         
         System.out.println("El tablero inicial es: ");
-        nuevoJuego.MostrarTablero();
+        nuevoJuego.mostrarTablero();
 
         boolean continuar = true;
         while (continuar) {
@@ -44,24 +44,24 @@ public class JuegoControlador{
             System.out.println("Columna:");
             int columna = input.nextInt();
 
-            boolean movimientoValido = nuevoJuego.HacerMovimiento(fila, columna);
+            boolean movimientoValido = nuevoJuego.hacerMovimiento(fila, columna);
             if (movimientoValido) {
-            nuevoJuego.CambiarJugador();
+            nuevoJuego.cambiarJugador();
             boolean resultadoGanador2Aux = nuevoJuego.JuegoTerminado();
-            String[] resultadoGanador = nuevoJuego.Ganador();
+            String[] resultadoGanador = nuevoJuego.ganador();
             if (!resultadoGanador2Aux) {
                     System.out.println("Aún no hay resultados.");
             } else if (resultadoGanador[0].equals("True")) {
                 System.out.println("El juego ha terminado, el ganador es: " + resultadoGanador[1]);
                 continuar = false;
-            } else if (nuevoJuego.Empate()) {
+            } else if (nuevoJuego.empate()) {
                 System.out.println("El juego ha terminado, es un empate.");
                 continuar = false;
             }
             } else {
                 System.out.println("La casilla ya está ocupada, por favor elija otra.");
             }
-                nuevoJuego.MostrarTablero();
+                nuevoJuego.mostrarTablero();
             }
     }
     private static void jugarCuatroEnLinea(){
@@ -116,56 +116,3 @@ public class JuegoControlador{
         System.out.println("Saliendo de la simulación");
     }
 }
-
-
-/*public class JuegoControlador
-{   private TicTacToe nuevoTicTacToe;
-    private CuatroEnLinea nuevoCuatroEnLinea;
-    
-    public static void main(String [] args){
-        Scanner input = new Scanner(System.in);
-        TicTacToe nuevoJuego = new TicTacToe();
-        System.out.println("El tablero inicial es: ");
-        nuevoJuego.MostrarTablero();
-        
-        boolean continuar = true;
-        while (continuar) {
-            // Pedimos la fila y columna para el movimiento
-            System.out.println("Fila:");
-            int fila = input.nextInt();
-            
-            System.out.println("Columna:");
-            int columna = input.nextInt();
-            
-            // Realizamos el movimiento y verificamos si fue exitoso
-            boolean movimientoValido = nuevoJuego.HacerMovimiento(fila, columna);
-            
-            if (movimientoValido) {
-                // Solo cambiamos de jugador si el movimiento fue válido
-                nuevoJuego.CambiarJugador();
-                
-                // Verificamos el estado del juego
-                boolean resultadoGanador2Aux = nuevoJuego.JuegoTerminado();
-                String[] resultadoGanador = nuevoJuego.Ganador();
-                
-                if (!resultadoGanador2Aux) {
-                    System.out.println("Aún no hay resultados.");  // Mensaje si no hay ganador ni empate
-                } else if (resultadoGanador[0].equals("True")) {
-                    System.out.println("El juego ha terminado, el ganador es: " + resultadoGanador[1]);
-                    continuar = false;  // Salimos del juego si hay un ganador
-                } else if (nuevoJuego.Empate()) {
-                    System.out.println("El juego ha terminado, es un empate.");
-                    continuar = false;  // Salimos del juego si hay empate
-                }
-                
-            } else {
-                System.out.println("La casilla ya está ocupada, por favor elija otra.");
-                // No cambiamos de jugador porque el movimiento no fue válido
-            }
-            // Mostramos el tablero actual después de cada turno
-            nuevoJuego.MostrarTablero();
-            
-        }
-    }
-}*/
-
