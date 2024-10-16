@@ -87,17 +87,16 @@ public class TicTacToe
         }
     }
     
-    /* Metodo ganador:
-     *      Revisa si hay un ganador en las filas, columnas y diagonales
+    /* Metodo ganadorFila:
+     *      Revisa si hay un ganador en las filas.
      * Parametros de entrada:
-     *      ninguno
+     *      ninguno.
      * Parametros de Sálida:
-     *      devuelve si hay un ganador y quien es el ganador
+     *      devuelve si hay un ganador en las filas.
      * Respuesta esperada:
-     *      Se espera que el metodo ganador identidique correctamente si hay un ganador en cada fila, columna o 
-     *      diagonal y que devuelva correctamente quien es el ganador
+     *      Se espera que el metodo identifique correctamente un ganador en las columnas.
      */
-        public String[] ganador() {
+        public String[] ganadorFila() {
         String[] resultados = new String[2];
         resultados[0] = "False";
         String primerElemento;
@@ -126,7 +125,26 @@ public class TicTacToe
                 }
             }
         }
+        resultados[0] = "False";
+        resultados[1] = null;
+        return resultados;
+    }
     
+    /*
+     * Metodo ganadorColumna:
+     *      identifica todas las formas posibles de ganar en columnas 
+     * Parametros de entrada:
+     *      ninguno
+     * Parametros de Sálida:
+     *      un String[] que se encarga de devolver si hay un ganador en columnas
+     * Respuesta esperada:
+     *      Se espera que identifique correctamente si hay un ganador en columnas
+       */
+    public String [] ganadorColumna(){
+        String[] resultados = new String[2];
+        resultados[0] = "False";
+        String primerElemento;
+        String jugadorGanador;
         // Revisamos si hay ganador en cada columna
         /*Del mismo modo fijamos una casilla [0][i] con 0<=i<=2 como primer elemento, asimismo primero vemos si la 
          * casilla está llena y luego procede a comparar el resto de casillas con el primer elemento, del mismo modo 
@@ -151,6 +169,26 @@ public class TicTacToe
                 }
             }
         }
+        resultados[0] = "False";
+        resultados[1] = null;
+        return resultados;
+    }
+    
+    /*
+     * Metodo ganadorDiagonal:
+     *      identifica todas las formas posibles de ganar en las diagonales 
+     * Parametros de entrada:
+     *      ninguno
+     * Parametros de Sálida:
+     *      un String[] que se encarga de devolver si hay un ganador en diagonales
+     * Respuesta esperada:
+     *      Se espera que identifique correctamente si hay un ganador en diagonales
+       */
+    public String [] ganadorDiagonal() {
+        String[] resultados = new String[2];
+        resultados[0] = "False";
+        String primerElemento;
+        String jugadorGanador;
         //Revisamos si hay ganador en la diagonal principal
         /*Del mismo modo fijamos un primer elemento en la casilla [0][0] que es el primer elemento de la diagonal
          * principal y luego se procede a revisar el resto de casillas para verificar si son iguales al primer 
@@ -196,6 +234,33 @@ public class TicTacToe
         resultados[0] = "False";
         resultados[1] = null;
         return resultados;
+    }
+    /*
+     * Metodo ganador:
+     *      identifica todas las formas posibles de ganar 
+     * Parametros de entrada:
+     *      ninguno
+     * Parametros de Sálida:
+     *      un String[] que se encarga de devolver si hay un ganador
+     * Respuesta esperada:
+     *      Se espera que identifique correctamente si hay un ganador en filas, columnas y diagonales
+       */
+    public String[] ganador() {
+        String[] ganador = ganadorFila();
+        if(ganador[0] != "False") {
+            return ganador;
+        }
+        
+        ganador = ganadorColumna();
+        if(ganador[0]!= "False") {
+            return ganador;
+        }
+        
+        ganador = ganadorDiagonal();
+        if(ganador[0]!="False") {
+            return ganador;
+        }
+        return ganador;
     }
 
     /* Metodo cambiarJugador:

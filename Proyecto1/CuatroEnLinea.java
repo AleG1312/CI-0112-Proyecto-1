@@ -197,16 +197,21 @@ public class CuatroEnLinea
         if (ganador != null){
            return ganador;
         }
-        else{
-            //Reviso si hay ganador en las columnas
-            ganador = ganadorColumna();
-            if (ganador != null){
-               return ganador;
-            }
+        
+        //Reviso si hay ganador en las columnas
+        ganador = ganadorColumna();
+        if (ganador != null){
+           return ganador;
+        }
+        //Reviso si hay ganador en la diagonal
+        ganador = ganadorDiagonal();
+        if(ganador!=null){
+        return ganador;
         }
         //En el caso de que no haya ganador en filas/columnas/diagonales, retorna el valor de ganador = null
         return ganador;
     }
+    
     /*
      * Método esTableroLleno:
      *      Revisa si el tablero se encuentra lleno.
@@ -311,4 +316,85 @@ public class CuatroEnLinea
             this.jugadorActual = "1";
         }
     }
+    /*
+     * Metodo ganadorDiagonal:
+     *      este metodo revisa las diagonales posibles 
+     * Parametros de entrada
+     *      ninguno
+     * Parametros salida
+     *      retorna un String que representa si hay ganador
+     * Respuesta esperada
+     *      Se espera que pueda indentificar cada una de las diagonales presentes en el tablero y retorne correctamente
+     *      si hay un ganador
+     *      
+       */
+    public String ganadorDiagonal() {
+        int filas = tablero.length;
+        int columnas = tablero[0].length;
+        
+        //recorremos cada casilla para verificar si hay una diagonal ascendente llamando al metodo diagonalAscendente
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                // Verificar diagonal ascendente
+                String ganadorAscendente = diagonalAscendente(i, j);
+                if (ganadorAscendente != null) {
+                    return ganadorAscendente;
+                }
+    
+                // Verificar diagonal descendente
+                String ganadorDescendente = diagonalDescendente(i, j);
+                if (ganadorDescendente != null) {
+                    return ganadorDescendente;
+                }
+            }
+        }
+        return null; // No hay ganador en ninguna diagonal
+    }
+    /*
+     * Metodo diagonalDescendente:
+     *      este método nos asegura que haya espacio para la diagonal y ademas compara los elementos
+     * Parametros de entrada:
+     *      toma como parametros las filas y columnas
+     * Parametros de salida:
+     *      devuelve un String que representa el ganador
+     * Respuesta esperada
+     *      Se espera que identifique correctamente cuando hay una diagonal descendente existente
+       */
+    private String diagonalDescendente(int fila, int columna) {
+        //verifica el espacio
+        if (fila - 3 >= 0 && columna + 3 < tablero[0].length) {
+            String jugador = tablero[fila][columna];
+            //compara los elementos de la diagonal 
+            if (jugador != null && tablero[fila - 1][columna + 1] == jugador &&
+                tablero[fila - 2][columna + 2] == jugador &&
+                tablero[fila - 3][columna + 3] == jugador) {
+                return String.valueOf(jugador);
+            }
+        }
+        return null;
+    }
+    /*
+     * Metodo diagonalAscendente:
+     *      este método nos asegura que haya espacio para la diagonal y ademas compara los elementos
+     * Parametros de entrada:
+     *      toma como parametros las filas y columnas
+     * Parametros de salida:
+     *      devuelve un String que representa el ganador
+     * Respuesta esperada
+     *      Se espera que identifique correctamente cuando hay una diagonal ascendente existente
+       */
+    private String diagonalAscendente(int fila, int columna) {
+        // verifica el espacio
+        if (fila + 3 < tablero.length && columna + 3 < tablero[0].length) {
+            String jugador = tablero[fila][columna];
+            //compara los elementos de la diagonal 
+            if (jugador != null && tablero[fila + 1][columna + 1] == jugador &&
+                tablero[fila + 2][columna + 2] == jugador &&
+                tablero[fila + 3][columna + 3] == jugador) {
+                return String.valueOf(jugador);
+            }
+        }
+        return null;
+    }
+    
 }
