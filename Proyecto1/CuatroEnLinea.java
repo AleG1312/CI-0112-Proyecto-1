@@ -100,11 +100,12 @@ public class CuatroEnLinea
     public void mostrarTablero(){
         String primeraFila;
         for (String[] fila : tablero){
-            primeraFila = "|";
+            primeraFila = " | ";
             for(String elemento : fila){
                 primeraFila += (elemento == null)? " " : elemento;
-                primeraFila += "|";
+                primeraFila += " | ";
             }
+            System.out.println("");
             System.out.println(primeraFila); 
         }
     }

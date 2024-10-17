@@ -314,7 +314,7 @@ public class TicTacToe
      * Respuesta esperada:
      *      Se espera que indique correctamente cuando el juego ha terminado. 
      */
-    public boolean JuegoTerminado() {
+    public boolean juegoTerminado() {
         String[] resultadoGanador2 = ganador();
         if (resultadoGanador2[0].equals("True")) {
             return true;

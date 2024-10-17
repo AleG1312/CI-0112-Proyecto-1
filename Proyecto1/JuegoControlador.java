@@ -47,7 +47,7 @@ public class JuegoControlador{
             boolean movimientoValido = nuevoJuego.hacerMovimiento(fila, columna);
             if (movimientoValido) {
                 nuevoJuego.cambiarJugador();
-                boolean resultadoGanador2Aux = nuevoJuego.JuegoTerminado();
+                boolean resultadoGanador2Aux = nuevoJuego.juegoTerminado();
                 String[] resultadoGanador = nuevoJuego.ganador();
                 if (!resultadoGanador2Aux) {
                         System.out.println("Aún no hay resultados.");
@@ -71,6 +71,7 @@ public class JuegoControlador{
             boolean juegoTerminado = false;
             while(juegoTerminado == false){
                 nuevoJuego.mostrarTablero();
+                System.out.println("Turno del jugador: " + nuevoJuego.getJugadorActual());
                 
                 System.out.println("Ingrese una columna dentro del rango [0," + (nuevoJuego.getTablero()[0].length-1) + "] para hacer su movimiento");
                 int columna = input.nextInt(); 
