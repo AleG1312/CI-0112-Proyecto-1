@@ -46,21 +46,21 @@ public class JuegoControlador{
 
             boolean movimientoValido = nuevoJuego.hacerMovimiento(fila, columna);
             if (movimientoValido) {
-            nuevoJuego.cambiarJugador();
-            boolean resultadoGanador2Aux = nuevoJuego.JuegoTerminado();
-            String[] resultadoGanador = nuevoJuego.ganador();
-            if (!resultadoGanador2Aux) {
-                    System.out.println("Aún no hay resultados.");
-            } else if (resultadoGanador[0].equals("True")) {
-                System.out.println("El juego ha terminado, el ganador es: " + resultadoGanador[1]);
-                continuar = false;
-            } else if (nuevoJuego.empate()) {
-                System.out.println("El juego ha terminado, es un empate.");
-                continuar = false;
-            }
-            } else {
-                System.out.println("La casilla ya está ocupada, por favor elija otra.");
-            }
+                nuevoJuego.cambiarJugador();
+                boolean resultadoGanador2Aux = nuevoJuego.JuegoTerminado();
+                String[] resultadoGanador = nuevoJuego.ganador();
+                if (!resultadoGanador2Aux) {
+                        System.out.println("Aún no hay resultados.");
+                } else if (resultadoGanador[0].equals("True")) {
+                    System.out.println("El juego ha terminado, el ganador es: " + resultadoGanador[1]);
+                    continuar = false;
+                } else if (nuevoJuego.empate()) {
+                    System.out.println("El juego ha terminado, es un empate.");
+                    continuar = false;
+                }
+                } else {
+                    System.out.println("La casilla ya está ocupada, por favor elija otra.");
+                }
                 nuevoJuego.mostrarTablero();
             }
     }
@@ -72,9 +72,20 @@ public class JuegoControlador{
             while(juegoTerminado == false){
                 nuevoJuego.mostrarTablero();
                 
-                System.out.println("Ingrese una columna para hacer su movimiento");
+                System.out.println("Ingrese una columna dentro del rango [0," + (nuevoJuego.getTablero()[0].length-1) + "] para hacer su movimiento");
                 int columna = input.nextInt(); 
                 
+                //Me verifica que el movimiento sea válido
+                boolean movimientoValido = nuevoJuego.movimientoValido(columna);
+                if(movimientoValido == false){
+                    do{
+                        nuevoJuego.mostrarTablero();
+                        System.out.println("La columna: " + columna + " es inválida. Por favor ingrese una dentro del rango [0," + (nuevoJuego.getTablero()[0].length-1) + "]");
+                        columna = input.nextInt(); 
+                        movimientoValido = nuevoJuego.movimientoValido(columna);
+                    }while(movimientoValido == false);
+                }
+    
                 //Me verifica que la columna no esté llena
                 boolean columnaLlena = nuevoJuego.columnaLlena(columna);
                 if (columnaLlena == true){
@@ -85,6 +96,7 @@ public class JuegoControlador{
                         columnaLlena = nuevoJuego.columnaLlena(columna);
                     }while(columnaLlena == true);
                 }
+                
                 nuevoJuego.hacerMovimiento(columna);
                 
                 //Compruebo si hay un ganador

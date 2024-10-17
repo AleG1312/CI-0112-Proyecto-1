@@ -52,6 +52,23 @@ public class CuatroEnLinea
         return columnaLlena;
     }
     /*
+     * Método movimientoValido:
+     *      Revisa si la columna indicada es válida.
+     * Parámetros de entrada:
+     *      Entero representando una columna.
+     * Parámetros de salida:
+     *      Booleano indicando true si el movimiento es válido y false si no.
+     * Respuesta Esperada:
+     *      Revisa si la columna ingresada es menor a cero (columna inicial) o mayor o igual
+     *      a la longitud de la primera fila.
+     */
+    public boolean movimientoValido(int columna){
+        //Compruebo si la columna está dentro del rango permitido
+        boolean movimientoValido = (0 <= columna && columna < this.tablero[0].length)? true:false;
+        
+        return movimientoValido;
+    }
+    /*
      * Método hacerMovimiento:
      *      Llena una casilla del tablero con el símbolo del jugador actual.
      * Parámetros de entrada:
