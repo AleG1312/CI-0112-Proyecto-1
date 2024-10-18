@@ -1,8 +1,8 @@
 /**
  * Write a description of class TicTacToe here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Luis Guido, Alejandro Guerra
+ * @version 17-10-2024
  */
 public class TicTacToe
 {

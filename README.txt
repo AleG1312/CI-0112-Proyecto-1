@@ -1,3 +1,8 @@
+Autores:
+	Luis Zúñiga Guido, C28693
+	Alejandro Guerra Rodríguez, C13451
+
+
 Juego de Cuatro en Línea y Tic Tac Toe
 
 - Introducción

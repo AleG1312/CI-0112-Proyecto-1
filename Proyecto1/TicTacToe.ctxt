@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=TicTacToe
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ TicTacToe\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ TicTacToe\ here.\r\n\ \r\n\ @author\ Luis\ Guido,\ Alejandro\ Guerra\r\n\ @version\ 17-10-2024\r\n
 comment1.params=
 comment1.target=TicTacToe()
 comment1.text=\ Metodo\ constructor\:\r\n\ \ \ \ \ \ Crea\ mi\ objeto\ Tic\ Tac\ Toe.\r\n\ Parametros\ de\ entrada\:\r\n\ \ \ \ \ \ \ ninguno.\r\n\ Parametros\ de\ salida\:\r\n\ \ \ \ \ \ \ ninguno.\r\n\ Respuesta\ esperada\:\r\n\ \ \ \ \ \ \ inicializa\ el\ tablero\ y\ el\ jugador\ actual\ en\ X.\r\n
